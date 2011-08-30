@@ -5,8 +5,14 @@
 
 void compile(char *code, int *pointer)
 {
-    if (!strncmp(code,"+", 1)) ++*pointer;
-    if (!strncmp(code,"-", 1)) --*pointer;
+    unsigned int i;
+
+    for (i = 0; i < strlen(code); i++) {
+        switch(code[i]) {
+            case '+': ++*pointer; break;
+            case '-': --*pointer; break;
+        }
+    }
 }
 
 int main (int argc, const char *argv[])
