@@ -5,9 +5,9 @@
 
 void compile(char *code, int *pointer)
 {
-    unsigned int i;
+    unsigned int i = 0;
 
-    for (i = 0; i < strlen(code); i++) {
+    while(i < strlen(code)) {
         switch (code[i]) {
         case '+':
             ++*pointer;
@@ -21,7 +21,25 @@ void compile(char *code, int *pointer)
         case '<':
             --pointer;
             break;
+        case '.':
+            putchar(*pointer);
+            break;
+        case '[':
+            int j = 0;
+            while(code[j] != ']') j++; 
+
+            char *temp = strndup(code + (sizeof(char) * (i + j)), j);
+            printf("temp = %s", &temp);
+
+            i += j;
+
+            break;
+        default:
+            printf("Unknown token %c\n", code[i]);
+            break;
         }
+
+        i++;
     }
 }
 
@@ -30,24 +48,7 @@ int main(int argc, const char *argv[])
     int *p = calloc(30000, 30000);
     *p = 0;
 
-    compile("+", p);
-    assert(*p == 1);
-    compile("-", p);
-    assert(*p == 0);
-    compile("++", p);
-    assert(*p == 2);
-    compile("--", p);
-    assert(*p == 0);
-    compile(">", p);
-    assert(*++p == 0);
-    compile("<", p);
-    assert(*++p == 0);
-    compile(">+", p);
-    assert(*++p == 1);
-    compile("<+", p);
-    assert(*--p == 1);
-
-    printf("Success!\n");
+    compile("++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.", p);
 
     return 0;
 }
