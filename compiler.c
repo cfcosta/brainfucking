@@ -49,9 +49,12 @@ void compile(char *code, int *pointer)
 int main(int argc, const char *argv[])
 {
     int *p = calloc(30000, 30000);
-    *p = 0;
+    char input[30000];
 
-    compile("++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.", p);
+    *p = 0;
+    fread(input, sizeof(input), 1, stdin);
+
+    compile(input, p);
 
     return 0;
 }
