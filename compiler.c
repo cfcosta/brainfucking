@@ -37,9 +37,6 @@ void compile(char *code, int *pointer)
             i += (j - i);
 
             break;
-        default:
-            printf("Unknown token %c\n", code[i]);
-            break;
         }
 
         i++;
