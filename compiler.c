@@ -5,9 +5,10 @@
 
 void compile(char *code, int *pointer)
 {
-    unsigned int i = 0;
+    int i = 0, j = 0;
+    char *temp;
 
-    while(i < strlen(code)) {
+    while (i < strlen(code)) {
         switch (code[i]) {
         case '+':
             ++*pointer;
@@ -25,13 +26,15 @@ void compile(char *code, int *pointer)
             putchar(*pointer);
             break;
         case '[':
-            int j = 0;
-            while(code[j] != ']') j++; 
+            j = i + 1;
+            while (code[j] != ']') j++;
 
-            char *temp = strndup(code + (sizeof(char) * (i + j)), j);
-            printf("temp = %s", &temp);
+            temp = strndup(code + (sizeof(char) * (i + 1)), j - i - 1);
+            while(*pointer) {
+              compile(temp, pointer);
+            }
 
-            i += j;
+            i += (j - i);
 
             break;
         default:
@@ -52,3 +55,4 @@ int main(int argc, const char *argv[])
 
     return 0;
 }
+
