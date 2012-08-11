@@ -1,6 +1,7 @@
 %{
 
 #include <stdio.h>
+#include "compiler.h"
 
 int yylex();
 int yyparse();
@@ -22,14 +23,14 @@ list: /* empty */
   ;
 
 expression:
-          PLUS { printf("PLUS\n"); }
-           | MINUS { printf("MINUS\n"); }
-           | LEFT { printf("LEFT\n"); }
-           | RIGHT { printf("RIGHT\n"); }
-           | DOT { printf("DOT\n"); }
-           | COMMA { printf("COMMA\n"); }
-           | OPEN_BRACKET { printf("OPEN_BRACKET\n"); }
-           | CLOSE_BRACKET { printf("CLOSE_BRACKET\n"); }
+          PLUS { compile(PLUS); }
+           | MINUS { compile(MINUS); }
+           | LEFT { compile(LEFT); }
+           | RIGHT { compile(RIGHT); }
+           | DOT { compile(DOT); }
+           | COMMA { compile(COMMA); }
+           | OPEN_BRACKET { compile(OPEN_BRACKET); }
+           | CLOSE_BRACKET { compile(CLOSE_BRACKET); }
            ;
 
 %%
