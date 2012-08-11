@@ -43,6 +43,8 @@ int main (int argc, char const* argv[])
   else
     yyin = stdin;
 
+  initialize_pointer();
+
   do {
     yyparse();
   } while (!feof(yyin));

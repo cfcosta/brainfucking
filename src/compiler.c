@@ -1,27 +1,32 @@
 #include "compiler.h"
 
+void initialize_pointer() {
+  pointer = calloc(30000,30000);
+}
+
 void compile(int code)
 {
   switch(code) {
     case PLUS:
-      printf("got PLUS\n");
+      ++*pointer;
       break;
     case MINUS:
-      printf("got MINUS\n");
-      break;
-    case LEFT:
-      printf("got LEFT\n");
+      --*pointer;
       break;
     case RIGHT:
-      printf("got RIGHT\n");
+      ++pointer;
+      break;
+    case LEFT:
+      --pointer;
       break;
     case DOT:
-      printf("got DOT\n");
+      putchar(*pointer);
       break;
     case COMMA:
       printf("got COMMA\n");
       break;
     default:
       printf("dafuq is this?\n");
+      break;
   }
 }
