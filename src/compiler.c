@@ -23,7 +23,7 @@ void compile(int code)
       putchar(*pointer);
       break;
     case COMMA:
-      printf("got COMMA\n");
+      *pointer = getchar();
       break;
     default:
       printf("dafuq is this?\n");
